@@ -68,7 +68,8 @@
             "default",
             "google",
             "sphinx",
-            "numpy"
+            "numpy",
+            "snakerpy"
           ],
           "description": "Which docstring format to use."
         },

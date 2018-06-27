@@ -26,6 +26,11 @@ export class AutoDocstring {
                 this.docstringFactory = new factories.NumpyFactory();
                 break;
 
+            // add by snakeclub: add snakerpy format
+            case "snakerpy":
+                this.docstringFactory = new factories.SnakerpyFactory();
+                break;
+
             default:
                 this.docstringFactory = new factories.DefaultFactory();
         }
@@ -54,9 +59,9 @@ export class AutoDocstring {
     validEnterActivation(document: string, linePosition: number, charPosition: number): boolean {
         console.log("multiline: ", isMultiLineString(document, linePosition, charPosition))
         console.log("closed: ", docstringIsClosed(document, linePosition, charPosition))
-        
+
         return (
-            !isMultiLineString(document, linePosition, charPosition) && 
+            !isMultiLineString(document, linePosition, charPosition) &&
             !docstringIsClosed(document, linePosition, charPosition)
         )
     }
