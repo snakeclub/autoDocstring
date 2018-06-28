@@ -1,7 +1,11 @@
 [![Build Status](https://travis-ci.org/NilsJPWerner/autoDocstring.svg?branch=master)](https://travis-ci.org/NilsJPWerner/autoDocstring)
 [![Installs](https://vsmarketplacebadge.apphb.com/installs-short/njpwerner.autodocstring.svg)](https://marketplace.visualstudio.com/items?itemName=njpwerner.autodocstring)
 
-# VSCode autoDocstring
+# VSCode autoDocstring - for SnakerPy
+
+注：本分支版本是基于autoDocstring进行改造，支持对SnakerPy规范的支持（具体见snakeclub的《[Python代码规范](DevStandards/docs/python/Python代码规范.md )》），由于对底层修改了几个方法，本分支不打算与原作者的[autoDocstring主分支](https://github.com/NilsJPWerner/autoDocstring.git)合并，如果原作者有更新优化，再考虑同步修正补充。
+
+
 
 Visual Studio Code extension to quickly generate docstrings for python functions.
 
