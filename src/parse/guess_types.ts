@@ -40,7 +40,7 @@ function guessTypeFromDefaultValue(parameter: string): string {
 
     if (isHexadecimal(defaultValue)) { return 'hexadecimal' }
 
-    if (isString(defaultValue)) { return 'str' }
+    if (isString(defaultValue)) { return 'string' }
 
     if (isBool(defaultValue)) { return 'bool' }
 

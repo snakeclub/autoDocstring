@@ -8,7 +8,9 @@ export abstract class BaseFactory {
     protected _newlineBeforeSummary: boolean;
     protected _includeDescription: boolean;
     protected _includeName: boolean;
-    protected _guessTypes : boolean;
+    protected _guessTypes: boolean;
+    protected _docstringFormat: string;
+    protected _includeSummary: boolean;
 
     constructor() {
         this._snippet = new vscode.SnippetString();
@@ -18,42 +20,80 @@ export abstract class BaseFactory {
         this._includeDescription = config.get("includeDescription") === true;
         this._includeName = config.get("includeName") === true;
         this._guessTypes = config.get("guessTypes") === true;
+        this._docstringFormat = config.get("docstringFormat");
+        this._includeSummary = config.get("includeSummary") === true;
     }
 
     createDocstring(docstring: DocstringParts, openingQuotes: boolean): vscode.SnippetString {
         this._snippet.value = "";
 
-        if (this._newlineBeforeSummary) {
-            this._snippet.appendText("\n");
+        if (this._docstringFormat == "snakerpy") {
+            // snakerpy单独的处理流程
+            this.generateDescription();  // 一定要有描述
+
+            if (!this._guessTypes) {
+                removeTypes(docstring);
+            }
+
+            addTypePlaceholders(docstring, '[type]')
+
+            if (docstring != undefined) {
+                this.generateSummary(docstring);  // Summary及放置在前面的属性
+
+                if (docstring.defType == "def") {
+                    if (docstring.decorators.length > 0) {
+                        this.formatDecorators(docstring.decorators);
+                    }
+                    if (docstring.args.length > 0) {
+                        this.formatArguments(docstring);
+                    }
+                    if (docstring.kwargs.length > 0) {
+                        this.formatKeywordArguments(docstring);
+                    }
+
+                    if (docstring.returns != undefined) {
+                        this.formatReturns(docstring.returns);
+                    }
+
+                    if (docstring.raises.length > 0) {
+                        this.formatRaises(docstring.raises);
+                    }
+                }
+            }
         }
-
-        this.generateSummary(docstring);
-
-        if (this._includeDescription) {
-            this.generateDescription();
-        }
-
-        if (!this._guessTypes) {
-            removeTypes(docstring);
-        }
-
-        addTypePlaceholders(docstring, '[type]')
-
-        if (docstring != undefined) {
-            if (docstring.decorators.length > 0) {
-                this.formatDecorators(docstring.decorators);
+        else {
+            if (this._newlineBeforeSummary) {
+                this._snippet.appendText("\n");
             }
-            if (docstring.args.length > 0) {
-                this.formatArguments(docstring);
+
+            this.generateSummary(docstring);
+
+            if (this._includeDescription) {
+                this.generateDescription();
             }
-            if (docstring.kwargs.length > 0) {
-                this.formatKeywordArguments(docstring);
+
+            if (!this._guessTypes) {
+                removeTypes(docstring);
             }
-            if (docstring.raises.length > 0) {
-                this.formatRaises(docstring.raises);
-            }
-            if (docstring.returns != undefined) {
-                this.formatReturns(docstring.returns);
+
+            addTypePlaceholders(docstring, '[type]')
+
+            if (docstring != undefined) {
+                if (docstring.decorators.length > 0) {
+                    this.formatDecorators(docstring.decorators);
+                }
+                if (docstring.args.length > 0) {
+                    this.formatArguments(docstring);
+                }
+                if (docstring.kwargs.length > 0) {
+                    this.formatKeywordArguments(docstring);
+                }
+                if (docstring.raises.length > 0) {
+                    this.formatRaises(docstring.raises);
+                }
+                if (docstring.returns != undefined) {
+                    this.formatReturns(docstring.returns);
+                }
             }
         }
 

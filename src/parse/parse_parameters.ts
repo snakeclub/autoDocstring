@@ -3,10 +3,28 @@ import { guessType } from "./guess_types";
 
 //change by snakeclub: add para definition, fix parseDecorators bug, and add defType return
 export function parseParameters(parameterTokens: string[], body: string[], functionName: string, definition: string): DocstringParts {
+    let defType: string = parseDefType(definition);
+    let decorators: Decorator[] = parseDecorators(definition.split("\n"));
+    if (defType == "" && functionName != "") {
+        defType = "var";
+    }
+    else if (defType == "class") {
+        // 判断是否属性
+        for (let decorator of decorators) {
+            if (decorator.name == "property") {
+                defType = "property"
+            }
+        }
+
+        // 判断是否枚举
+        if (parameterTokens.length > 0 && parameterTokens[0] == "Enum") {
+            defType = "enum"
+        }
+    }
     return {
-        defType: parseDefType(definition),
+        defType: defType,
         name: functionName,
-        decorators: parseDecorators(definition.split("\n")),
+        decorators: decorators,
         args: parseArguments(parameterTokens),
         kwargs: parseKeywordArguments(parameterTokens),
         returns: parseReturn(parameterTokens, body),

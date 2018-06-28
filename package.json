@@ -1,8 +1,8 @@
 {
-  "name": "autodocstring",
-  "displayName": "autoDocstring",
-  "description": "Generates python docstrings",
-  "version": "0.3.0",
+  "name": "autodocstring4snakerpy",
+  "displayName": "autoDocstring for snakerpy",
+  "description": "Generates python docstrings snakerpy",
+  "version": "0.0.0",
   "publisher": "njpwerner",
   "license": "SEE LICENSE IN LICENSE",
   "icon": "images/icon.png",
@@ -63,7 +63,7 @@
       "properties": {
         "autoDocstring.docstringFormat": {
           "type": "string",
-          "default": "default",
+          "default": "snakerpy",
           "enum": [
             "default",
             "google",
@@ -87,6 +87,11 @@
           "type": "boolean",
           "default": false,
           "description": "Include function names at the start of docstrings"
+        },
+        "autoDocstring.includeSummary": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include Summary after description by snakerpy"
         },
         "autoDocstring.newlineBeforeSummary": {
           "type": "boolean",
