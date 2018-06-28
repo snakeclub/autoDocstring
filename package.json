@@ -2,7 +2,7 @@
   "name": "autodocstring4snakerpy",
   "displayName": "autoDocstring for snakerpy",
   "description": "Generates python docstrings snakerpy",
-  "version": "0.1.0",
+  "version": null,
   "publisher": "njpwerner",
   "license": "SEE LICENSE IN LICENSE",
   "icon": "images/icon.png",
