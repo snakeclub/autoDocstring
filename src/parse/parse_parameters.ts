@@ -8,14 +8,15 @@ export function parseParameters(parameterTokens: string[], body: string[], funct
     if (defType == "" && functionName != "") {
         defType = "var";
     }
-    else if (defType == "class") {
+    else if (defType == "def") {
         // 判断是否属性
         for (let decorator of decorators) {
             if (decorator.name == "property") {
                 defType = "property"
             }
         }
-
+    }
+    else if (defType == "class") {
         // 判断是否枚举
         if (parameterTokens.length > 0 && parameterTokens[0] == "Enum") {
             defType = "enum"

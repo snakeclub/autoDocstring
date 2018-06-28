@@ -38,6 +38,10 @@
       {
         "command": "extension.generateDocstring",
         "title": "Generate Docstring"
+      },
+      {
+        "command": "extension.replacePreDefinedVar",
+        "title": "Replace Pre-Defined"
       }
     ],
     "keybindings": [
@@ -45,7 +49,13 @@
         "command": "extension.generateDocstring",
         "key": "ctrl+shift+2",
         "mac": "cmd+shift+2",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && resourceLangId == python"
+      },
+      {
+        "command": "extension.replacePreDefinedVar",
+        "key": "ctrl+shift+1",
+        "mac": "cmd+shift+1",
+        "when": "editorTextFocus && resourceLangId == python"
       }
     ],
     "menus": {
@@ -53,6 +63,11 @@
         {
           "when": "resourceLangId == python",
           "command": "extension.generateDocstring",
+          "group": "1_modification"
+        },
+        {
+          "when": "resourceLangId == python",
+          "command": "extension.replacePreDefinedVar",
           "group": "1_modification"
         }
       ]
@@ -72,6 +87,19 @@
             "snakerpy"
           ],
           "description": "Which docstring format to use."
+        },
+        "autoDocstring.replacePreDefinedConfig": {
+          "type": "object",
+          "default": {
+            "/\\{\\$AUTHOR\\$\\}/g": "Huijian Li",
+            "/\\{\\$VERSION\\$\\}/g": "0.1.0",
+            "/\\{\\$DATE\\$\\}/g": "{$DATE$}",
+            "/\\{\\$TIME\\$\\}/g": "{$TIME$}",
+            "/\\{\\$FILENAME\\$\\}/g": "{$FILENAME$}",
+            "/\\{\\$MODULENAME\\$\\}/g": "{$MODULENAME$}",
+            "/\\{\\$LINE\\$\\}/g": "{$LINE$}"
+          },
+          "description": "replace pre-defined config, key:searchRegexStr, value:replaceStr"
         },
         "autoDocstring.generateDocstringOnEnter": {
           "type": "boolean",

@@ -3,6 +3,7 @@ import * as factories from './docstring_factories/factories'
 import { parse } from './parse/parse'
 import { docstringIsClosed } from './parse/closed_docstring'
 import { isMultiLineString } from './parse/multi_line_string'
+import { POINT_CONVERSION_COMPRESSED } from 'constants';
 
 
 export class AutoDocstring {
@@ -34,6 +35,10 @@ export class AutoDocstring {
             default:
                 this.docstringFactory = new factories.DefaultFactory();
         }
+    }
+
+    public replacePreDefinedVar() {
+        this.docstringFactory.replacePreDefinedVar();
     }
 
     public generateDocstring(onEnter: boolean) {

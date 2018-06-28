@@ -47,10 +47,10 @@ export class SnakerpyFactory extends BaseFactory {
             default:
                 // moudle
                 this._snippet.appendText(`@module `);
-                this._snippet.appendPlaceholder(`<fullname>`);
+                this._snippet.appendPlaceholder(this.getModuleName());
                 this.appendNewLine();
                 this._snippet.appendText(`@file `);
-                this._snippet.appendPlaceholder(`<filename>`);
+                this._snippet.appendPlaceholder(this.getFileName());
                 this.appendNewLine();
                 break;
         }

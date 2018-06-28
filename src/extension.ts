@@ -11,7 +11,18 @@ export function activate(context: vs.ExtensionContext): void {
                 let editor = vs.window.activeTextEditor;
                 let autoDocstring = new AutoDocstring(editor);
                 autoDocstring.generateDocstring(false);
-             }
+            }
+        )
+    );
+
+    // 预定义代码替换
+    context.subscriptions.push(
+        vs.commands.registerCommand(
+            'extension.replacePreDefinedVar', () => {
+                let editor = vs.window.activeTextEditor;
+                let autoDocstring = new AutoDocstring(editor);
+                autoDocstring.replacePreDefinedVar();
+            }
         )
     );
 
@@ -52,4 +63,4 @@ function getPrecedingRange(numberOfChars: number, changeEvent: vs.TextDocumentCh
     return range
 }
 
-export function deactivate() {}
+export function deactivate() { }
