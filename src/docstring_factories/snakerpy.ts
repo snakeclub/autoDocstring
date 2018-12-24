@@ -67,7 +67,7 @@ export class SnakerpyFactory extends BaseFactory {
             this.appendNewLine();
             for (let decorator of decorators) {
                 this.appendText(`@decorators ${decorator.name} - `);
-                this.appendPlaceholder(`[description]`);
+                this.appendPlaceholder(`<description>`);
                 this.appendNewLine();
             }
         }

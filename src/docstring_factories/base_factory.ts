@@ -36,7 +36,7 @@ export abstract class BaseFactory {
                 removeTypes(docstring);
             }
 
-            addTypePlaceholders(docstring, '[type]')
+            addTypePlaceholders(docstring, '<type>')
 
             if (docstring != undefined) {
                 this.generateSummary(docstring);  // Summary及放置在前面的属性
@@ -77,7 +77,7 @@ export abstract class BaseFactory {
                 removeTypes(docstring);
             }
 
-            addTypePlaceholders(docstring, '[type]')
+            addTypePlaceholders(docstring, '<type>')
 
             if (docstring != undefined) {
                 if (docstring.decorators.length > 0) {

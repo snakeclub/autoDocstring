@@ -4,7 +4,7 @@
 
 - 在命令行转到项目目录，通过以下命令自动安装依赖包：`npm install`
 - 依赖包安装完成后，通过以下命令进行编译：`npm run compile`
-- 如果编译中发现有报依赖模块找不到的情况（但又实际上能在node_modules找到），先执行 `npm cache clean` 清除缓存，再执行 `npm install` 重新安装依赖包
+- 如果编译中发现有报依赖模块找不到的情况（但又实际上能在node_modules找到，例如找不到vscode），先执行 `npm cache clean` 清除缓存，再执行 `npm install` 重新安装依赖包（根据提示可能要执行“npm audit fix --force”修复部分已安装补丁）
 - 如果还不行，尝试执行一下 `npm  init ` 重新初始化一次package.json文件（注意要先备份），然后重新再安装
 
 

@@ -2,7 +2,7 @@
   "name": "autodocstring4snakerpy",
   "displayName": "autoDocstring for snakerpy",
   "description": "Generates python docstrings snakerpy",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publisher": "njpwerner",
   "license": "SEE LICENSE IN LICENSE",
   "icon": "images/icon.png",
@@ -55,7 +55,7 @@
         "command": "extension.replacePreDefinedVar",
         "key": "ctrl+shift+1",
         "mac": "cmd+shift+1",
-        "when": "editorTextFocus && resourceLangId == python"
+        "when": "editorTextFocus"
       }
     ],
     "menus": {
@@ -143,14 +143,14 @@
     "release": "standard-version"
   },
   "devDependencies": {
-    "vscode": "^1.1.10",
     "@types/chai": "^4.1.2",
     "@types/mocha": "^2.2.37",
     "@types/node": "^6.0.59",
     "chai": "^4.1.2",
-    "mocha": "^2.5.3",
+    "mocha": "^5.2.0",
     "ts-node": "^4.1.0",
-    "typescript": "^2.0.3"
+    "typescript": "^2.0.3",
+    "vscode": "^1.1.26"
   },
   "dependencies": {}
 }
